@@ -12,3 +12,35 @@ git commit -m “현재형으로 설명” // 커밋해서 스냅샷을 찍는�
 git remote add origin https://github.com/username/myproject.git // 로컬과 원격 저장소를 연결한다.
 git remote -v // 연결상태를 확인한다.
 git push origin master // 깃허브로 푸시한다.
+
+
+-------------------------------------------------------------------------
+Q :
+I cloned my repository with:
+
+git clone ssh://xxxxx/xx.git 
+but after I changed some files and add and commit them I want to push them to server:
+
+git add xxx.php
+git commit -m "TEST"
+git push origin master
+But the error I get back is:
+
+error: src refspec master does not match any.  
+error: failed to push some refs to 'ssh://xxxxx.com/project.git'
+
+Re : 
+
+Maybe you just need to commit. I ran into this when I did:
+
+mkdir repo && cd repo
+git remote add origin /path/to/origin.git
+git add .
+Oops! Never committed!
+
+git push -u origin master
+error: src refspec master does not match any.
+All I had to do was:
+
+git commit -m 'initial commit'
+git push origin master
